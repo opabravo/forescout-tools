@@ -65,6 +65,16 @@ Forescout API - Segments管理工具
 
 ![first run](img/3.png)
 
+#### Config fields description
+
+| Field | Description |
+| --- | --- |
+| `FS_URL` | Forescout API's Base URL, Eample Format : `https://192.168.1.1` |
+| `FS_ADMIN_USERNAME` | Forescout Admin API's Username (Usually the default is `admin`)|
+| `FS_ADMIN_PASSWORD` | Forescout Admin API's Password (Usually same as the password for forescout enterprise manager)|
+| `FS_WEB_USERNAME` | Forescout Web API Username (Sould be set in `forescout -> options -> Web API`) |
+| `FS_WEB_PASSWORD` | Forescout Web API Password (Sould be set in `forescout -> options -> Web API`) |
+
 ### QAs
 
 #### How to edit the config?
