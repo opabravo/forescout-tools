@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "forescout"
+version = "0.1.0"
+description = ""
+authors = ["opabravo <21262207+opabravo@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+python-dotenv = "^1.0.0"
+loguru = "^0.7.0"
+deepdiff = "^6.3.0"
+pyyaml = "^6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
