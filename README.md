@@ -16,20 +16,36 @@
 
 ## How to use
 
-### Install dependencies
+### Use compiled binary
+
+Download the latest release from [here](https://github.com/opabravo/ForeScout-Tools/releases/download/1.0/forescout-tools.iso)
+
+Open `forescout-tools.iso`
+
+Make a `forescout-tools` folder on your disk
+
+![Alt text](img/4.png)
+
+Copy the `forescout-tools.exe` from DVD(iso) to the folder
+
+![Alt text](img/5.png)
+
+Run it
+
+### Run from source code
+
+#### Install dependencies
 
 ```bash
-cd Forescout-Tools
+git clone https://github.com/opabravo/forescout-tools
+cd forescout-tools
 poetry install
-```
-
-### Run the script
-
-This will open up a menu
-
-```bash
 poetry run python main.py
 ```
+
+## Usage
+
+This will open up a menu
 
 ```bash
 C:>poetry run main.py
@@ -54,18 +70,17 @@ Forescout API - Segments管理工具
 請選擇 ->
 ```
 
-#### Backup and modify network segments policies
+### Backup and modify network segments policies
 
 ![first run](img/1.png)
 
 ![modify segments](img/2.png)
 
-
-#### Backup hosts data
+### Backup hosts data
 
 ![first run](img/3.png)
 
-#### Config fields description
+### Config fields description
 
 | Field | Description |
 | --- | --- |
@@ -75,9 +90,9 @@ Forescout API - Segments管理工具
 | `FS_WEB_USERNAME` | Forescout Web API Username (Sould be set in `forescout -> options -> Web API`) |
 | `FS_WEB_PASSWORD` | Forescout Web API Password (Sould be set in `forescout -> options -> Web API`) |
 
-### QAs
+## QAs
 
-#### How to edit the config?
+### How to edit the config?
 
 Edit the `config.yaml` file
 
