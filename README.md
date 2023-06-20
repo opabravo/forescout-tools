@@ -7,13 +7,6 @@
 - Backup and modify network segments policies
 - Backup hosts data
 
-## Requirements
-
-- [Python 3.11+](https://www.python.org/downloads/)
-- [Poetry](https://python-poetry.org/docs/#installation)
-- Forescout Admin API Username and password
-- Forescout Web API Username and password
-
 ## How to use
 
 ### Use compiled binary
@@ -33,6 +26,11 @@ Copy the `forescout-tools.exe` from DVD(iso) to the folder
 Run it
 
 ### Run from source code
+
+#### Requirements
+
+- [Python 3.11+](https://www.python.org/downloads/)
+- [Poetry](https://python-poetry.org/docs/#installation)
 
 #### Install dependencies
 
