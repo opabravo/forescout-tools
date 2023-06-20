@@ -1,8 +1,6 @@
 # ForeScout Tools
 
-## Overview
-
-This repository contains a collection of tools that can be used to interact with the ForeScout API.
+> This repository contains a collection of tools that can be used to interact with the ForeScout API.
 
 ## Functions
 
