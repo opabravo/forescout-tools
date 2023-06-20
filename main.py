@@ -31,6 +31,7 @@ def save_config(config: Settings):
     config_file = CWD / "config.yaml"
     with open(config_file, "w") as f:
         yaml.dump(config.__dict__, f, default_flow_style=False)
+    logger.info(f"已儲存至: {config_file.resolve()}，欲更改設定請編輯此檔案!")
 
 def get_function_required_fields(function_type: str):
     required_fields = ["FS_URL"]
