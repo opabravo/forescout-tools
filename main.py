@@ -1,6 +1,7 @@
 import time
 import json
 import yaml
+import sys
 from forescout import Admin, WebAPI
 from forescout.constant import Settings, FunctionRequiredFields
 from forescout.utils.log import get_logger
@@ -9,7 +10,12 @@ from deepdiff import DeepDiff
 
 
 logger = get_logger()
-CWD = Path(__file__).parent
+
+# Get current working directory based on script or frozen exe
+if getattr(sys, 'frozen', False):
+    CWD = Path(sys.executable).parent
+else:
+    CWD = Path(__file__).parent
 
 
 def load_config() -> Settings:
@@ -268,8 +274,8 @@ def init():
     for folder in {"backups", "segments", "hosts"}:
         path = Path(CWD / folder)
         if not path.exists():
-            logger.info(f"建立 {folder} 資料夾...")
             path.mkdir()
+            logger.info(f"已建立 {folder} 資料夾...")
 
     return True
 
