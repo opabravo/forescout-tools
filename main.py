@@ -63,7 +63,7 @@ def check_config(config: Settings, function_type: str) -> bool:
     if not fields_not_set:
         return True
 
-    logger.error(f"[-] config.yaml 缺乏以下參數: {fields_not_set}")
+    logger.error(f"[-] config.yamlThe following parameters missing: {fields_not_set}")
     return False
 
 def prompt_config(function_type: str, previos_config: Settings) -> dict:
@@ -79,9 +79,9 @@ def prompt_config(function_type: str, previos_config: Settings) -> dict:
             continue
         
         while True:
-            value = input(f"請輸入 {field} -> ")
+            value = input(f"Please enter {field} -> ")
             if not value:
-                logger.error("[-] 請勿輸入空值")
+                logger.error("[-] Do no enter a null value")
                 continue
             setattr(config, field, value)
             break
@@ -101,7 +101,7 @@ def prompt_config(function_type: str, previos_config: Settings) -> dict:
 #     if not fields_not_set:
 #         return True
 
-#     logger.error(f"[-] 請先至 .env 設定以下參數: {fields_not_set}")
+#     logger.error(f"[-] Please go first .env See the following parameters: {fields_not_set}")
 #     return False
 
 
