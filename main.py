@@ -152,13 +152,13 @@ def edit_segments():
     #             loaded_segments = json.load(f)
     #             segments_to_update = loaded_segments["node"]
     #     except json.decoder.JSONDecodeError as e:
-    #         logger.error(f"[-] JSON格式錯誤: {e}")
+    #         logger.error(f"[-] The JSON Format is wrong: {e}")
     #         logger.exception(e)
     #     except KeyError as e:
-    #         logger.error(f"[-] 錯誤的Forescout Segments JSON檔，缺少 {e} 欄位")
+    #         logger.error(f"[-] Bad Forescout Segments JSON file with missing {e} field")
     #         logger.exception(e)
     #     except Exception as e:
-    #         logger.error(f"[-] 檔案讀取錯誤: {e}")
+    #         logger.error(f"[-] File read error: {e}")
     #         logger.exception(e)
     #     else:
     #         break
@@ -189,10 +189,10 @@ def edit_segments():
             logger.error(f"[-] JSON Format Error: {e}")
             logger.exception(e)
         except KeyError as e:
-            logger.error(f"[-] 錯誤的Forescout Segments JSON檔，缺少 {e} 欄位")
+            logger.error(f"[-] Bad Forescout Segments JSON file with missing {e} field")
             logger.exception(e)
         except Exception as e:
-            logger.error(f"[-] 檔案讀取錯誤: {e}")
+            logger.error(f"[-] File read error: {e}")
             logger.exception(e)
         else:
             break
