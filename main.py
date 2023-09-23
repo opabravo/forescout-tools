@@ -118,35 +118,35 @@ def edit_segments():
 
     # Init admin
     # admin = Admin(settings.FS_URL, settings.FS_ADMIN_USERNAME, settings.FS_ADMIN_PASSWORD)
-    logger.info("正在登入...")
+    logger.info("Logging in...")
     is_success = admin.login()
     if not is_success:
-        logger.error("登入失敗")
+        logger.error("Login failed")
         return
 
-    logger.success("登入成功")
+    logger.success("Login sucessful")
 
     # time.sleep(3)
     # segments = admin.fetch_segments()
     # logger.info(f"Segments: {segments}")
 
     # Backup segments
-    logger.info("正在備份Segments...")
+    logger.info("Backing upSegments...")
     time.sleep(3)
     backup_file_path_str = admin.backup_segments()
     backup_file_path = Path(backup_file_path_str)
-    logger.info(f"已備份到: {backup_file_path.resolve()}")
+    logger.info(f"Backed up: {backup_file_path.resolve()}")
 
 
     # Copy the backup file to segments folder
     # segments_folder = CWD / "segments"
     # shutil.copy(backup_file_path, segments_folder)
     # segment_file_path = segments_folder / backup_file_path.name
-    # logger.info(f"已複製到: {segments_folder.resolve()}")
+    # logger.info(f"Copied to: {segments_folder.resolve()}")
 
     # while 1:
-    #     logger.info(f"\n請更改 {segment_file_path.resolve()} 檔案內容")
-    #     input("按下Enter繼續...")
+    #     logger.info(f"\nPlease change {segment_file_path.resolve()} Archival Content")
+    #     input("Press Enter to go on...")
     #     try:
     #         with open(segment_file_path, "r") as f:
     #             loaded_segments = json.load(f)
@@ -164,19 +164,19 @@ def edit_segments():
     #         break
 
     while 1:
-        segment_file = input("\n請拖曳 更改後JSON檔到此 -> ")
+        segment_file = input("\nPlease drag After the change, the JSON file is here -> ")
         if not segment_file:
-            logger.error("[!] 請輸入檔案路徑")
+            logger.error("[!] Please enter the file path")
             continue
 
         segment_file_path = Path(segment_file.strip('"').strip("'"))
 
         if not segment_file_path.exists():
-            logger.error(f"[-] 檔案不存在: {segment_file}")
+            logger.error(f"[-] The archive does not exist: {segment_file}")
             continue
 
         if not str(segment_file_path).lower().endswith(".json"):
-            logger.error("[!] 請輸入JSON檔")
+            logger.error("[!] Please enter the JSON file")
             continue
 
         # segment_file = "./backups/original_segments.json"
@@ -186,7 +186,7 @@ def edit_segments():
                 loaded_segments = json.load(f)
                 segments_to_update = loaded_segments["node"]
         except json.decoder.JSONDecodeError as e:
-            logger.error(f"[-] JSON格式錯誤: {e}")
+            logger.error(f"[-] JSON Format Error: {e}")
             logger.exception(e)
         except KeyError as e:
             logger.error(f"[-] 錯誤的Forescout Segments JSON檔，缺少 {e} 欄位")
