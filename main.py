@@ -206,13 +206,13 @@ def edit_segments():
     segments_diff_parsed = json.dumps(segments_diff, indent=4)
 
     # Make sure the segments is in json format for web trnasfer
-    # logger.warning(f"\n[*] 此設定將覆蓋目前的Segments設定:\n {segments_to_update}")
-    logger.warning(f"\n[*] Segments差異:\n---\n{segments_diff_parsed}\n---\n")
+    # logger.warning(f"\n[*] This setting overrides the current Segments setting:\n {segments_to_update}")
+    logger.warning(f"\n[*] Segments differences:\n---\n{segments_diff_parsed}\n---\n")
     # print(json.dumps(segments_diff, indent=4))
-    confirm = input("\n[!] 請確認是否要更新Segments (Y/N) -> ")
+    confirm = input("\n[!] Check whether you want to update segments (Y/N) -> ")
 
     if confirm.lower() not in {"y", "yes"}:
-        logger.info("[-] 使用者取消更新Segments")
+        logger.info("[-] The user cancels updating segments")
         return
 
     time.sleep(3)
@@ -220,9 +220,9 @@ def edit_segments():
 
     response = admin.update_segments(segments_to_update)
     if response.status_code == 200:
-        logger.success("[+] 成功更新Segments")
+        logger.success("[+] Segments updated successfully")
     else:
-        logger.error(f"[!] 更新失敗: {response.text}")
+        logger.error(f"[!] Update failure: {response.text}")
 
 @logger.catch
 def web_api_utils():
@@ -236,21 +236,21 @@ def web_api_utils():
         # return
     
     # web = WebAPI(settings.FS_URL, settings.FS_WEB_USERNAME, settings.FS_WEB_PASSWORD)
-    logger.info("正在登入...")
+    logger.info("Logging in...")
     is_success = web.login()
     if not is_success:
-        logger.error("登入失敗")
+        logger.error("Login failed")
         return
     
-    logger.success("登入成功")
-    # logger.info("正在取得所有網路設備...")
+    logger.success("Login successful")
+    # logger.info("All network devices are being acquired...")
     # hosts = web.fetch_hosts()
 
     # Backup Hosts
-    logger.info("正在備份網路設備...")
+    logger.info("Backing up network devices...")
     backup_file_path_str = web.backup_hosts(CWD / "hosts")
     backup_file_path = Path(backup_file_path_str)
-    logger.info(f"已備份到: {backup_file_path.resolve()}")
+    logger.info(f"Backed up to: {backup_file_path.resolve()}")
 
 
 def show_banner():
@@ -261,7 +261,7 @@ def show_banner():
 | _| \/ | v / _|`._`.| \_| \/ | \/ | | |     | || \/ | \/ | |_`._`. 
 |_| \__/|_|_\___|___/ \__/\__/ \__/  |_|     |_| \__/ \__/|___|___/ 
 
-Forescout API - Segments管理工具
+Forescout API - Segments management tool
 
                   @2023 by - https://github.com/opabravo/forescout-tools
 ------------------------------------------------------------------------
@@ -275,7 +275,7 @@ def init():
         path = Path(CWD / folder)
         if not path.exists():
             path.mkdir()
-            logger.info(f"已建立 {folder} 資料夾...")
+            logger.info(f"The {folder} folder has been created...")
 
     return True
 
