@@ -54,18 +54,18 @@ C:>poetry run main.py
 | _| \/ | v / _|`._`.| \_| \/ | \/ | | |     | || \/ | \/ | |_`._`.
 |_| \__/|_|_\___|___/ \__/\__/ \__/  |_|     |_| \__/ \__/|___|___/
 
-Forescout API - Segments管理工具
+Forescout API - Segments management tool
 
                   @2023 by - https://github.com/opabravo/forescout-tools
 ------------------------------------------------------------------------
 
 初始化...
 
-[1] 更新Segments
+[1] Update Segments
 [2] Web API Utils
-[3] 離開
+[3] Exit
 
-請選擇 ->
+Select ->
 ```
 
 ### Backup and modify network segments policies
