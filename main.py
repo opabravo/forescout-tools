@@ -282,11 +282,11 @@ def init():
 def main():
     while 1:
         print("""
-[1] 更新Segments
+[1] Update Segments
 [2] Web API Utils
-[3] 離開
+[3] Exit
         """)
-        choice = input("請選擇 -> ")
+        choice = input("Please select -> ")
         if choice == "1":
             edit_segments()
         elif choice == "2":
@@ -294,21 +294,21 @@ def main():
         elif choice == "3":
             break
         else:
-            logger.warning("[-] 請輸入有效選項")
+            logger.warning("[-] Please enter a valid option")
 
 
 if __name__ == "__main__":
     show_banner()
 
-    logger.info("初始化...")
+    logger.info("Initialize...")
     init_result = init()
     if not init_result:
-        logger.error("初始化失敗")
-        input("按任意鍵結束...")
+        logger.error("Initialization failed")
+        input("Press any key to finish...")
         exit()
 
     try:
         main()
     except KeyboardInterrupt:
-        logger.error("\n[-] 使用者中斷程式")
-    input("按任意鍵結束...")
+        logger.error("\n[-] The user interrupts the program")
+    input("Press any key to finish...")
