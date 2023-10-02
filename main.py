@@ -37,7 +37,7 @@ def save_config(config: Settings):
     config_file = CWD / "config.yaml"
     with open(config_file, "w") as f:
         yaml.dump(config.__dict__, f, default_flow_style=False)
-    logger.info(f"Saved to: {config_file.resolve()}，To change your settings edit this file.")
+    logger.info(f"Saved to: {config_file.resolve()} (To change your settings edit this file.")
 
 def get_function_required_fields(function_type: str):
     required_fields = ["FS_URL"]
@@ -63,7 +63,7 @@ def check_config(config: Settings, function_type: str) -> bool:
     if not fields_not_set:
         return True
 
-    logger.error(f"[-] config.yamlThe following parameters missing: {fields_not_set}")
+    logger.error(f"[-] config.yaml The following parameters missing: {fields_not_set}")
     return False
 
 def prompt_config(function_type: str, previos_config: Settings) -> dict:
