@@ -81,7 +81,7 @@ def prompt_config(function_type: str, previos_config: Settings) -> dict:
         while True:
             value = input(f"Please enter {field} -> ")
             if not value:
-                logger.error("[-] Do no enter a null value")
+                logger.error("[-] Do not enter a null value")
                 continue
             setattr(config, field, value)
             break
