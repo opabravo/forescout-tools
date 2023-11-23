@@ -63,7 +63,7 @@ def check_config(config: Settings, function_type: str) -> bool:
     if not fields_not_set:
         return True
 
-    logger.error(f"[-] config.yaml The following parameters missing: {fields_not_set}")
+    logger.error(f"[-] config.yaml The following parameters are missing: {fields_not_set}")
     return False
 
 def prompt_config(function_type: str, previos_config: Settings) -> dict:
