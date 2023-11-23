@@ -37,7 +37,7 @@ def save_config(config: Settings):
     config_file = CWD / "config.yaml"
     with open(config_file, "w") as f:
         yaml.dump(config.__dict__, f, default_flow_style=False)
-    logger.info(f"已儲存至: {config_file.resolve()}，欲更改設定請編輯此檔案!")
+    logger.info(f"Saved to: {config_file.resolve()} (To change your settings, edit this file.")
 
 def get_function_required_fields(function_type: str):
     required_fields = ["FS_URL"]
@@ -63,7 +63,7 @@ def check_config(config: Settings, function_type: str) -> bool:
     if not fields_not_set:
         return True
 
-    logger.error(f"[-] config.yaml 缺乏以下參數: {fields_not_set}")
+    logger.error(f"[-] config.yaml The following parameters are missing: {fields_not_set}")
     return False
 
 def prompt_config(function_type: str, previos_config: Settings) -> dict:
@@ -79,9 +79,9 @@ def prompt_config(function_type: str, previos_config: Settings) -> dict:
             continue
         
         while True:
-            value = input(f"請輸入 {field} -> ")
+            value = input(f"Please enter {field} -> ")
             if not value:
-                logger.error("[-] 請勿輸入空值")
+                logger.error("[-] Do not enter a null value")
                 continue
             setattr(config, field, value)
             break
@@ -101,7 +101,7 @@ def prompt_config(function_type: str, previos_config: Settings) -> dict:
 #     if not fields_not_set:
 #         return True
 
-#     logger.error(f"[-] 請先至 .env 設定以下參數: {fields_not_set}")
+#     logger.error(f"[-] Please set the following parameters: {fields_not_set} in .env file first")
 #     return False
 
 
@@ -118,65 +118,65 @@ def edit_segments():
 
     # Init admin
     # admin = Admin(settings.FS_URL, settings.FS_ADMIN_USERNAME, settings.FS_ADMIN_PASSWORD)
-    logger.info("正在登入...")
+    logger.info("Logging in...")
     is_success = admin.login()
     if not is_success:
-        logger.error("登入失敗")
+        logger.error("Login failed")
         return
 
-    logger.success("登入成功")
+    logger.success("Login sucessful")
 
     # time.sleep(3)
     # segments = admin.fetch_segments()
     # logger.info(f"Segments: {segments}")
 
     # Backup segments
-    logger.info("正在備份Segments...")
+    logger.info("Backing upSegments...")
     time.sleep(3)
     backup_file_path_str = admin.backup_segments()
     backup_file_path = Path(backup_file_path_str)
-    logger.info(f"已備份到: {backup_file_path.resolve()}")
+    logger.info(f"Backed up: {backup_file_path.resolve()}")
 
 
     # Copy the backup file to segments folder
     # segments_folder = CWD / "segments"
     # shutil.copy(backup_file_path, segments_folder)
     # segment_file_path = segments_folder / backup_file_path.name
-    # logger.info(f"已複製到: {segments_folder.resolve()}")
+    # logger.info(f"Copied to: {segments_folder.resolve()}")
 
     # while 1:
-    #     logger.info(f"\n請更改 {segment_file_path.resolve()} 檔案內容")
-    #     input("按下Enter繼續...")
+    #     logger.info(f"\nPlease change {segment_file_path.resolve()} Archival Content")
+    #     input("Press Enter to go on...")
     #     try:
     #         with open(segment_file_path, "r") as f:
     #             loaded_segments = json.load(f)
     #             segments_to_update = loaded_segments["node"]
     #     except json.decoder.JSONDecodeError as e:
-    #         logger.error(f"[-] JSON格式錯誤: {e}")
+    #         logger.error(f"[-] The JSON Format is wrong: {e}")
     #         logger.exception(e)
     #     except KeyError as e:
-    #         logger.error(f"[-] 錯誤的Forescout Segments JSON檔，缺少 {e} 欄位")
+    #         logger.error(f"[-] Bad Forescout Segments JSON file with missing {e} field")
     #         logger.exception(e)
     #     except Exception as e:
-    #         logger.error(f"[-] 檔案讀取錯誤: {e}")
+    #         logger.error(f"[-] File read error: {e}")
     #         logger.exception(e)
     #     else:
     #         break
 
     while 1:
-        segment_file = input("\n請拖曳 更改後JSON檔到此 -> ")
+        segment_file = input("\nPlease drag After the change, the JSON file is here -> ")
         if not segment_file:
-            logger.error("[!] 請輸入檔案路徑")
+            logger.error("[!] Please enter the file path")
             continue
 
         segment_file_path = Path(segment_file.strip('"').strip("'"))
 
         if not segment_file_path.exists():
-            logger.error(f"[-] 檔案不存在: {segment_file}")
+            logger.error(f"[-] The archive does not exist: {segment_file}")
             continue
 
         if not str(segment_file_path).lower().endswith(".json"):
-            logger.error("[!] 請輸入JSON檔")
+            logger.error("[!] Please enter the JSON file")
             continue
 
         # segment_file = "./backups/original_segments.json"
@@ -186,13 +186,13 @@ def edit_segments():
                 loaded_segments = json.load(f)
                 segments_to_update = loaded_segments["node"]
         except json.decoder.JSONDecodeError as e:
-            logger.error(f"[-] JSON格式錯誤: {e}")
+            logger.error(f"[-] JSON Format Error: {e}")
             logger.exception(e)
         except KeyError as e:
-            logger.error(f"[-] 錯誤的Forescout Segments JSON檔，缺少 {e} 欄位")
+            logger.error(f"[-] Bad Forescout Segments JSON file with missing {e} field")
             logger.exception(e)
         except Exception as e:
-            logger.error(f"[-] 檔案讀取錯誤: {e}")
+            logger.error(f"[-] File read error: {e}")
             logger.exception(e)
         else:
             break
@@ -206,13 +206,13 @@ def edit_segments():
     segments_diff_parsed = json.dumps(segments_diff, indent=4)
 
     # Make sure the segments is in json format for web trnasfer
-    # logger.warning(f"\n[*] 此設定將覆蓋目前的Segments設定:\n {segments_to_update}")
-    logger.warning(f"\n[*] Segments差異:\n---\n{segments_diff_parsed}\n---\n")
+    # logger.warning(f"\n[*] This setting overrides the current Segments setting:\n {segments_to_update}")
+    logger.warning(f"\n[*] Segments differences:\n---\n{segments_diff_parsed}\n---\n")
     # print(json.dumps(segments_diff, indent=4))
-    confirm = input("\n[!] 請確認是否要更新Segments (Y/N) -> ")
+    confirm = input("\n[!] Check whether you want to update segments (Y/N) -> ")
 
     if confirm.lower() not in {"y", "yes"}:
-        logger.info("[-] 使用者取消更新Segments")
+        logger.info("[-] The user cancels updating segments")
         return
 
     time.sleep(3)
@@ -220,9 +220,9 @@ def edit_segments():
 
     response = admin.update_segments(segments_to_update)
     if response.status_code == 200:
-        logger.success("[+] 成功更新Segments")
+        logger.success("[+] Segments updated successfully")
     else:
-        logger.error(f"[!] 更新失敗: {response.text}")
+        logger.error(f"[!] Update failure: {response.text}")
 
 @logger.catch
 def web_api_utils():
@@ -236,21 +236,21 @@ def web_api_utils():
         # return
     
     # web = WebAPI(settings.FS_URL, settings.FS_WEB_USERNAME, settings.FS_WEB_PASSWORD)
-    logger.info("正在登入...")
+    logger.info("Logging in...")
     is_success = web.login()
     if not is_success:
-        logger.error("登入失敗")
+        logger.error("Login failed")
         return
     
-    logger.success("登入成功")
-    # logger.info("正在取得所有網路設備...")
+    logger.success("Login successful")
+    # logger.info("All network devices are being acquired...")
     # hosts = web.fetch_hosts()
 
     # Backup Hosts
-    logger.info("正在備份網路設備...")
+    logger.info("Backing up network devices...")
     backup_file_path_str = web.backup_hosts(CWD / "hosts")
     backup_file_path = Path(backup_file_path_str)
-    logger.info(f"已備份到: {backup_file_path.resolve()}")
+    logger.info(f"Backed up to: {backup_file_path.resolve()}")
 
 
 def show_banner():
@@ -261,7 +261,7 @@ def show_banner():
 | _| \/ | v / _|`._`.| \_| \/ | \/ | | |     | || \/ | \/ | |_`._`. 
 |_| \__/|_|_\___|___/ \__/\__/ \__/  |_|     |_| \__/ \__/|___|___/ 
 
-Forescout API - Segments管理工具
+Forescout API - Segments management tool
 
                   @2023 by - https://github.com/opabravo/forescout-tools
 ------------------------------------------------------------------------
@@ -275,18 +275,18 @@ def init():
         path = Path(CWD / folder)
         if not path.exists():
             path.mkdir()
-            logger.info(f"已建立 {folder} 資料夾...")
+            logger.info(f"The {folder} folder has been created...")
 
     return True
 
 def main():
     while 1:
         print("""
-[1] 更新Segments
+[1] Update Segments
 [2] Web API Utils
-[3] 離開
+[3] Exit
         """)
-        choice = input("請選擇 -> ")
+        choice = input("Please select -> ")
         if choice == "1":
             edit_segments()
         elif choice == "2":
@@ -294,21 +294,21 @@ def main():
         elif choice == "3":
             break
         else:
-            logger.warning("[-] 請輸入有效選項")
+            logger.warning("[-] Please enter a valid option")
 
 
 if __name__ == "__main__":
     show_banner()
 
-    logger.info("初始化...")
+    logger.info("Initialize...")
     init_result = init()
     if not init_result:
-        logger.error("初始化失敗")
-        input("按任意鍵結束...")
+        logger.error("Initialization failed")
+        input("Press any key to finish...")
         exit()
 
     try:
         main()
     except KeyboardInterrupt:
-        logger.error("\n[-] 使用者中斷程式")
-    input("按任意鍵結束...")
+        logger.error("\n[-] The user interrupts the program")
+    input("Press any key to finish...")
