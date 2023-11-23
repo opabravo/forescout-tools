@@ -101,7 +101,7 @@ def prompt_config(function_type: str, previos_config: Settings) -> dict:
 #     if not fields_not_set:
 #         return True
 
-#     logger.error(f"[-] Please go first .env See the following parameters: {fields_not_set}")
+#     logger.error(f"[-] Please set the following parameters: {fields_not_set} in .env file first")
 #     return False
 
 
